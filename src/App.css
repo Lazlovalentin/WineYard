@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Della+Respira&family=Epilogue:ital,wght@0,400..900;1,400..900&display=swap');
+
+body {
+  overflow-x: hidden;
+}
+
+.faqList ul {
+  margin: 0;
+}
+
+.subscribe-sec #email-helper-text {
+  position: absolute;
+  top: -20px;
+}
