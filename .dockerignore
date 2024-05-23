@@ -3,3 +3,4 @@ node_modules
 eslint
 .github
 .gitignore
+CICDfront.pem
