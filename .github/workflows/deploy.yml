@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     name: docker to EC2
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps: 
     - name: Checkout the code
@@ -46,8 +46,8 @@ jobs:
             touch deploy.txt
             echo "Great, it works!" >> deploy.txt
             sudo chmod 777 /var/run/docker.sock
-            docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE }}:latest 
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE }}:latest 
             docker stop ${{ secrets.CONTAINER }}
             docker rm ${{ secrets.CONTAINER }} 
-            docker rmi ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE }} 
-            docker run --name ${{ secrets.CONTAINER }} -d -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.IMAGE }}
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE }} 
+            docker run --name ${{ secrets.CONTAINER }} -d -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE }}
