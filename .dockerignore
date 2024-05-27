@@ -11,3 +11,4 @@ CICDfront.pem
 playwright.config.ts
 tests
 README.md
+.eslintrc.cjs
