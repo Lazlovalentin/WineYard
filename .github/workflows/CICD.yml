@@ -33,6 +33,10 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - name: Connect to ec2
+        run: ssh -i ${{secrets.EC2_KEY}} ubunto@18.156.206.169, < ./run.sh
+
+      
 
   deploy:
     name: Deploy
