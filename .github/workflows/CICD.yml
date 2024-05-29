@@ -33,9 +33,15 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-      - name: Connect to ec2
-        run: ssh -i ${{secrets.EC2_KEY}} ubunto@18.156.206.169, < ./run.sh
-
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 18.156.206.169 >> ~/.ssh/known_hosts
+  
+      - name: Connect to EC2 and run script
+        run: ssh -i ~/.ssh/id_rsa ubunto@18.156.206.169 'bash -s' < ./run.sh
       
 
   deploy:
