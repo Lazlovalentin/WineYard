@@ -33,12 +33,12 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-      - name: Setup SSH
-        run: ssh -i ${{secrets.EC2_KEY}} ubuntu@18.156.206.169
-      - name: connection to action-runner
-        run: cd action-runner
-      - name: run action-runner on ec2
-        run: ./run.sh  
+      - name: Setup SSH and run commands
+        run: |
+            ssh -i ${{secrets.EC2_KEY}} ubuntu@18.156.206.169 << 'EOF'
+              cd actions-runner
+              ./run.sh
+            EOF
   
   deploy:
     name: Deploy
