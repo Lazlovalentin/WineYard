@@ -33,6 +33,13 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+      - name: Set up SSH key
+        run: |
+            echo "${{secrets.EC2_KEY}}" > key.pem
+            chmod 600 key.pem
+        
+      - name: List directory contents for debug
+        run: ls -la
       - name: Setup SSH and run commands
         run: |
             ssh -i ${{secrets.EC2_KEY}} ubuntu@18.156.206.169 << 'EOF'
